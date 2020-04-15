@@ -4,9 +4,6 @@
 
 # Возможно, есть более изящный способ, но я его не увидел
 
-lst = list(input())
-for i in range(len(lst)):
-    lst[i] = int(lst[i])
-lst_cleared = set(lst)
-print(tuple(sorted(lst_cleared)))
-print(tuple(sorted(lst_cleared, reverse=True)))
+lst = set(map(int, list(input())))
+print(tuple(sorted(lst)))
+print(tuple(sorted(lst, reverse=True)))
