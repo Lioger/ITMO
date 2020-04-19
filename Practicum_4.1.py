@@ -4,29 +4,41 @@
 Реализовать вывод начальных значений, взятие по 1 книге, возвращение по 1 книге с выводом текущего числа
 после вызова каждого из методов, меняющих значение книг.
 Типичный ответ одной строкой: 'Boogeyman 66 65 66 Battleground 50 49 50'."""
+list_1 = input().split()
 
 
-class Books(object, list_1=input().split()):
-    def __init__(self):
-        self.lib = []
-        for i in list_1:
-            if i.isdigit():
-                self.lib.append([int(i)])
-            else:
-                self.lib.append([i])
-
+class Books(object):
+    def __init__(self, listik):
+        self.list_final = listik
+        self.boog_count = int(self.list_final[1])
+        self.batt_count = int(self.list_final[3])
+        self.score = 2
 
     def __del__(self):
-        del Books
-
-    def books_count(self):
         pass
+
+    def boog_counter(self):
+        return self.boog_count
+
+    def batt_counter(self):
+        return self.batt_count
 
     def books_take(self):
-        pass
+        self.boog_count -= 1
+        self.batt_count -= 1
+        self.list_final.insert(self.score, self.boog_count)
+        self.list_final.append(self.batt_count)
+        self.score += 1
 
     def books_return(self):
-        pass
+        self.boog_count += 1
+        self.batt_count += 1
+        self.list_final.insert(self.score, self.boog_count)
+        self.list_final.append(self.batt_count)
+        self.score += 1
 
 
-book = Books.books_count(*list_1)
+book = Books(list_1)
+book.books_take()
+book.books_return()
+print(*book.list_final)

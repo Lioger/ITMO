@@ -14,17 +14,32 @@ Barmaley 67
 представленных в шестнадцатеричном виде, сведенных в одну строку через пробел вида
 md5 c47.... md5 5d....' (без пробелов в начале и конце строки)."""
 import hashlib
-lst = input()
 
 
-# class Preob(object, lst):
+class Preob(object):
+    dict_1 = {}
+
+    def __init__(self, str_x):
+        self.list_1 = str_x.split()
+        for i in range(0, len(self.list_1), 2):
+            self.dict_1.update({self.list_1[i]: int(self.list_1[i + 1])})
+
+    def get_dict(self):
+        for i, j in sorted(self.dict_1.items()):
+            print(i, j)
 
 
-class Hashing(object):
-    def hashin(self, lst):
-        first_str = hashlib.md5(lst.encode()).hexdigest()
-        print('md5', first_str)
+class Hashing(Preob):
+    def __init__(self, method):
+        self.method = method
+        super(Preob, self).__init__()
+
+    def hashin(self):
+        for key in sorted(self.dict_1):
+            print("md5", hashlib.md5(key.encode()).hexdigest(), end=" ")
 
 
-a = Hashing()
-a.hashin(lst)
+input_str = input('Введите название книги и число экземпляров (Пример: "Aybolit 60"): ')
+input_method = input('Введите метод шифрования (Пример: "md5"): ')
+Preob(input_str).get_dict()
+Hashing(input_method).hashin()
